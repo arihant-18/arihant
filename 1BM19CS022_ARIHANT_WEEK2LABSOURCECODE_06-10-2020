@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+class Student
+{
+    private String usn;
+    private String name;
+    private int[] credits;
+    private  int[] marks;
+    private int sum=0;
+    private double sgpa;
+    private  int m=0;
+
+    public void Usn(String usn) {
+        this.usn = usn;
+    }
+
+    public void Name(String name) {
+        this.name = name;
+    }
+
+    public void Credits(int[] credits) {
+        this.credits = credits;
+    }
+
+    public void Marks(int[] marks) {
+        this.marks = marks;
+    }
+    
+
+    void display()
+    {
+        System.out.println("Name:"+name);
+        System.out.println("USN"+usn);
+        System.out.println("Credits of each subject:");
+        for(int i=0;i<credits.length;i++)
+        {
+            System.out.println(credits[i]);
+            m += credits[i];
+        }
+        System.out.println("Marks of each subject:");
+        for(int i=0;i<marks.length;i++)
+        {
+            System.out.println(marks[i]);
+        }
+    }
+    void sgpa()
+    {
+        for(int i=0;i<marks.length;i++)
+        {
+            if(marks[i]>=90)
+                sum += credits[i]*10;
+            else if(marks[i]>=80 && marks[i]<90)
+                sum += credits[i]*9;
+            else if(marks[i]>=70 && marks[i]<80)
+                sum += credits[i]*8;
+            else if(marks[i]>=60 && marks[i]<70)
+                sum += credits[i]*7;
+            else if(marks[i]>=50 && marks[i]<60)
+                sum += credits[i]*6;
+            else if(marks[i]>=40 && marks[i]<50)
+                sum += credits[i]*5;
+            else
+                sum += credits[i]*0;
+        }
+        sgpa = sum*1.0/m;
+        System.out.println("SGPA:"+sgpa);
+    }
+
+}
+public class Arya
+{
+    public static void main(String args[])
+    {
+        Scanner ss = new Scanner(System.in);
+        int [] credits = new int[]{5,4,4,4,3};
+        String [] subject = new  String[]{"CHEMISTRY", "EM1","MECHANICS","EEE","EED"};
+        int[] marks=new int[credits.length];
+        for(int i=0;i<credits.length;i++)
+        {
+            System.out.print(subject[i]+":");
+            marks[i]=ss.nextInt();
+        }
+        Student s = new Student();
+        s.Usn("1BM19CS022");
+        s.Name("ARIHANT ");
+        s.Marks(marks);
+        s.Credits(credits);
+        s.display();
+        s.sgpa();
+    }
+}
