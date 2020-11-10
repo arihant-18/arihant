@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Lab1 {
+	public static void main (String args[])
+	{
+		Scanner ss = new Scanner(System.in);
+		System.out.println("Enter the parameters");
+		int a, b,c;
+		a= ss.nextInt();
+		b=ss.nextInt();
+		c=ss.nextInt();
+		double d;
+		d= Math.sqrt(b*b-4*a*c);
+		if (d>0)
+		{
+			double r1,r2;
+			r1=(-b+d)/(2.0*a);
+			r2=(-b-d)/(2.0*a);
+			System.out.println("the roots are real and distinct and values are " +r1+ "and "+r2);
+		}
+		else if (d==0)
+		{
+			double r;
+			r=-b/(2.0*a);
+			System.out.println("the roots are real and equal and value is equal to " +r);
+		}
+		else 
+		{
+			System.out.println("there is no real solution");
+		}
+	}
+}
