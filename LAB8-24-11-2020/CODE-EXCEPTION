@@ -1,0 +1,58 @@
+import java.util.Scanner;
+class WrongAge extends Exception
+{
+    public WrongAge(String msg)
+    {
+        super(msg);
+    }
+}
+class Father
+{
+    int father_age;
+
+    public Father(int father_age) {
+        this.father_age = father_age;
+    }
+}
+
+class Son extends Father
+{
+    int son_age;
+
+    public Son(int father_age, int son_age) {
+        super(father_age);
+        this.son_age = son_age;
+    }
+
+    public void display() throws WrongAge
+    {
+        if(father_age <= son_age)
+            throw new WrongAge("Age of father can'tbe less than or eqaual to age of son");
+        else 
+        {
+            System.out.println("Father's age = " + father_age);
+            System.out.println("Son's age = " + son_age);
+        }
+    }
+}
+
+public class Excep {
+
+    public static void main(String[] args) {
+        Scanner ss=new Scanner(System.in);
+       System.out.println("enter the age of father");
+        int m=ss.nextInt(); 
+        System.out.println("enter the age of son");
+        int n=ss.nextInt(); 
+        Son s1 = new Son(m,n);
+        try {
+            s1.display();
+        }
+        catch (WrongAge e)
+        {
+            e.printStackTrace();
+        }
+
+        
+    }
+}
