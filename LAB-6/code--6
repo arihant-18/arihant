@@ -1,0 +1,101 @@
+package CIE;
+
+
+public class Student  {
+    String usn;
+    String name;
+    String sem;
+
+    public Student(String usn, String name, String sem) {
+        this.usn = usn;
+        this.name = name;
+        this.sem = sem;
+    }
+}
+package CIE;
+
+public class Internals {
+    double [] marks_cie = new double[5];
+
+    public Internals(double[] marks_cie) {
+        this.marks_cie = marks_cie;
+    }
+
+    public double[] getMarks_cie() {
+        return marks_cie;
+    }
+}
+package SEE;
+
+import CIE.Student;
+
+public class Externals extends Student {
+        double [] see_marks = new double[5];
+
+    public Externals(String usn, String name, String sem, double[] see_marks) {
+        super(usn, name, sem);
+        this.see_marks = see_marks;
+    }
+
+    public double[] getSee_marks() {
+        return see_marks;
+    }
+}
+import CIE.*;
+import SEE.*;
+
+import java.util.Scanner;
+
+public class Macha {
+
+    public static void main(String[] args) {
+        Scanner s  = new Scanner(System.in);
+        System.out.println("Enter the number of students:");
+        int n = s.nextInt();
+        Externals [] e = new Externals[n];
+        Internals [] i = new Internals[n];
+
+        for(int k=0;k<n;k++)
+        {
+            System.out.println("Enter the details of Student "+(k+1)+":");
+            System.out.print("Enter usn:");
+            String usn = s.next();
+            System.out.print("Enter name:");
+            String name = s.next();
+            System.out.println("Enter sem:");
+            String sem = s.next();
+            System.out.println();
+            System.out.println("Enter cie marks of each subject:");
+            double [] cie_marks = new double[5];
+            for(int j=1;j<=5;j++)
+            {
+                System.out.print("Subject "+(j)+":");
+                cie_marks[j-1] = s.nextDouble();
+            }
+            System.out.println();
+            System.out.println("Enter see marks of  subject:");
+            double [] see_marks = new double[5];
+            for(int j=1;j<=5;j++)
+            {
+                System.out.print("Subject "+(j)+":");
+                see_marks[j-1] = s.nextDouble();
+            }
+            
+            e[k] = new Externals(usn,name,sem,see_marks);
+            i[k] = new Internals(cie_marks);
+
+        }
+        for(int k=0;k<n;k++)
+        {
+            System.out.println("The total marks of Student "+(k+1)+" in every  subject:");
+            for(int j=1;j<=5;j++)
+            {
+
+                System.out.println("Subject " + (k + 1) + ":" +(e[k].getSee_marks()[j-1]/2.0 + i[k].getMarks_cie()[j-1]));
+            }
+            System.out.println();
+        }
+
+
+    }
+}
